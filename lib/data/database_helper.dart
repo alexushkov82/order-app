@@ -61,5 +61,19 @@ class DatabaseHelper {
       FOREIGN KEY(orderId) REFERENCES $tableOrder(id),
       FOREIGN KEY(productId) REFERENCES $tableProduct(id)
           ''');
+
+    await db.execute('''
+      INSERT INTO $tableCategory (name) VALUES ('Food')
+      INSERT INTO $tableCategory (name) VALUES ('Drink')
+          ''');
+
+    await db.execute(''' 
+      INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Pizza')
+      INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Burger')
+      INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Pasta')
+      INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Coke')
+      INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Coffee')
+      INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Tea')
+          ''');
   }
 }
