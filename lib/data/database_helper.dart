@@ -65,15 +65,27 @@ class DatabaseHelper {
 
     await db.execute('''
       INSERT INTO $tableCategory (name) VALUES ('Food');
+          ''');
+    await db.execute('''
       INSERT INTO $tableCategory (name) VALUES ('Drink');
           ''');
 
-    await db.execute(''' 
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Pizza');
+          ''');
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Burger');
+          ''');
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (1, 'Pasta');
+          ''');
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Coke');
+          ''');
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Coffee');
+          ''');
+    await db.execute('''
       INSERT INTO $tableProduct (categoryId, name) VALUES (2, 'Tea');
           ''');
   }
@@ -92,5 +104,23 @@ class DatabaseHelper {
     return List.generate(maps.length, (i) {
       return Product(id: maps[i]['id'], categoryId: maps[i]['categoryId'], name: maps[i]['name']);
     });
+  }
+
+  Future<Order> createOrder(int tableNumber) async {
+    final db = await database;
+    final Map<String, dynamic> orderMap = {'tableNumber': tableNumber};
+    final int orderId = await db!.insert(tableOrder, orderMap);
+    return Order(id: orderId, tableNumber: tableNumber);
+  }
+
+  Future<OrderItem> addOrderItem(int orderId, int productId) async {
+    final db = await database;
+    final Map<String, dynamic> orderItemMap = {
+      'orderId': orderId,
+      'productId': productId,
+      'quantity': 1,
+    };
+    final int orderItemId = await db!.insert(tableOrderItem, orderItemMap);
+    return OrderItem(id: orderItemId, orderId: orderId, productId: productId, quantity: 1);
   }
 }

@@ -7,6 +7,11 @@ class Category {
   Map<String, dynamic> toMap() {
     return {'id': id, 'name': name};
   }
+
+  @override
+  String toString() {
+    return 'Category{id: $id, name: $name}';
+  }
 }
 
 class Product {
@@ -19,6 +24,11 @@ class Product {
   Map<String, dynamic> toMap() {
     return {'id': id, 'categoryId': categoryId, 'name': name};
   }
+
+  @override
+  String toString() {
+    return 'Product{id: $id, categoryId: $categoryId, name: $name}';
+  }
 }
 
 class Order {
@@ -29,6 +39,11 @@ class Order {
 
   Map<String, dynamic> toMap() {
     return {'id': id, 'tableNumber': tableNumber};
+  }
+
+  @override
+  String toString() {
+    return 'Order{id: $id, tableNumber: $tableNumber}';
   }
 }
 
@@ -42,5 +57,10 @@ class OrderItem {
 
   Map<String, dynamic> toMap() {
     return {'id': id, 'orderId': orderId, 'productId': productId, 'quantity': quantity};
+  }
+
+  @override
+  String toString() {
+    return 'OrderItem{id: $id, orderId: $orderId, productId: $productId, quantity: $quantity}';
   }
 }
