@@ -32,13 +32,13 @@ class Order {
   }
 }
 
-class OrderProduct {
+class OrderItem {
   int id;
   int orderId;
   int productId;
   int quantity;
 
-  OrderProduct({required this.id, required this.orderId, required this.productId, required this.quantity});
+  OrderItem({required this.id, required this.orderId, required this.productId, required this.quantity});
 
   Map<String, dynamic> toMap() {
     return {'id': id, 'orderId': orderId, 'productId': productId, 'quantity': quantity};
