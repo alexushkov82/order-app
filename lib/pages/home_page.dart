@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'order_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,10 +15,20 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Text('Orders'),
+        title: const Text('Tables'),
       ),
-      body: const Center(
-        child: Text('Orders'),
+      body: Center(
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const OrderPage()),
+              );
+            },
+            child: const Text('Go to the Order'),
+          ),
+        ),
       ),
     );
   }
